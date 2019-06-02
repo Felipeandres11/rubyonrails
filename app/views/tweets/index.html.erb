@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tweets</h1>
+
+
+
+  <div class="row">
+    <div class="col-9">
+     <% if @tweets.any? %>
+      <table class="py-3">
+        <tr>
+          <th> Titulo    </th>
+          <th> Contenido </th>
+          <th> Editar </th>
+          <th> Eliminar </th>
+        </tr>
+      
+        <% @tweets.each do |tweet| %>
+          
+            <tr>
+              <td><%= tweet.title %></td>
+              <td><%= tweet.content %></td>
+              <td><%= link_to 'Edit', edit_tweet_path(tweet), class:'btn btn-primary' %></td>
+              <td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?',}, class:'btn btn-warning' %></td>
+            </tr>
+        
+        
+        <% end %>
+         <% else %>
+          <h1> No hay Tweets con el contenido <%= params[:query] %> </h1>
+        <% end %> 
+        </table>
+      </div>
+
+    
+  
+  <div class="col-3">
+    <%= render 'form', tweet: @new_tweet %>
+  </div>
+</div>
